@@ -55,6 +55,11 @@ redrawが non-nilの場合は、Windowを再描画します。"
 (setq-default indent-tabs-mode nil)
 (setq indent-line-function 'indent-relative-maybe)
 
+;; auto-indent
+(setq indent-line-function 'indent-relative-maybe)
+(global-set-key "\C-m" 'newline-and-indent)
+(global-set-key "\C-m" 'indent-new-comment-line)
+
 ;; バックアップを残さない
 (setq make-backup-files nil)
 ;; 終了時にオートセーブファイルを消す
