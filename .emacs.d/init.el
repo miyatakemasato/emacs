@@ -19,13 +19,12 @@
 (prefer-coding-system 'utf-8)
 
 ;; 行番号表示
-(global-linum-mode t)
-(set-face-attribute 'linum nil
-                    :foreground "#800"
-                    :height 0.9)
-
+;(global-linum-mode t)
+;(set-face-attribute 'linum nil
+;                    :foreground "#800"
+;                    :height 0.9)
 ;; 行番号フォーマット
-(setq linum-format "%3d")
+;(setq linum-format "%3d")
 
 ;; 括弧の範囲内を強調表示
 (show-paren-mode t)
