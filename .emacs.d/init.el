@@ -50,11 +50,15 @@ redrawが non-nilの場合は、Windowを再描画します。"
     (setq num (+ num tab-width)))
   (when redraw (redraw-display)) tab-width)
 
+(setq-default tab-width 2)
+(setq default-tab-width 2)
 (set-aurora-tab-width (setq default-tab-width (setq-default tab-width 2)))
 (setq-default indent-tabs-mode nil)
-(setq indent-line-function 'indent-relative-maybe)
+; useless
+; (setq indent-line-function 'indent-relative-maybe)
 
 ;; auto-indent
+; useless
 (setq indent-line-function 'indent-relative-maybe)
 (global-set-key "\C-m" 'newline-and-indent)
 (global-set-key "\C-m" 'indent-new-comment-line)
@@ -70,7 +74,7 @@ redrawが non-nilの場合は、Windowを再描画します。"
 ;  (copy-region-as-kill
 ;   (line-beginning-position)
 ;   (line-beginning-position (1+ (or arg 1))))
-;  (message "Line copied")) 
+;  (message "Line copied"))
 ;(define-key global-map "\M-o" 'copy-line)
 
 ;;ショートカットコマンドはここで設定可能
@@ -95,9 +99,14 @@ redrawが non-nilの場合は、Windowを再描画します。"
 (setq jaspace-alternate-jaspace-string "□")
 ;; タブ記号を表示。
 (setq jaspace-highlight-tabs t)
+(add-hook 'font-lock-mode-hook
+          (lambda ()
+            (font-lock-add-keywords
+             nil
+             '(("\t" 0 'trailing-whitespace prepend)))))
 
 ;; 現在行を目立たせる
-(global-hl-line-mode)
+;(global-hl-line-mode)
 ;; カーソルの位置が何文字目かを表示する
 (column-number-mode t)
 ;; カーソルの位置が何行目かを表示する
@@ -119,3 +128,10 @@ redrawが non-nilの場合は、Windowを再描画します。"
     (if file-name
         (find-alternate-file (concat "/sudo::" file-name))
       (error "Cannot get a file name"))))
+
+;; javascript-mode
+; tab
+(setq js-indent-level 2)
+
+;; 165が¥（円マーク） , 92が\（バックスラッシュ）を表す
+(define-key global-map [165] [92])
